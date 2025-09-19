@@ -10,8 +10,13 @@ declare module 'vue' {
   export interface GlobalComponents {
     Desktop: typeof import('./src/views/Desktop.vue')['default']
     DesktopApp: typeof import('./src/views/DesktopApp.vue')['default']
+    Dock: typeof import('./src/components/Dock.vue')['default']
+    History: typeof import('./src/apps/History.vue')['default']
+    MenuBar: typeof import('./src/components/MenuBar.vue')['default']
     Mobile: typeof import('./src/views/Mobile.vue')['default']
     MobileApp: typeof import('./src/views/MobileApp.vue')['default']
     Settings: typeof import('./src/apps/Settings.vue')['default']
+    Sona: typeof import('./src/apps/Sona.vue')['default']
+    Toolbar: typeof import('./src/components/Toolbar.vue')['default']
   }
 }

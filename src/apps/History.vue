@@ -1,3 +1,3 @@
 <template>
-    <p>Mobile App</p>
+    <p>History</p>
 </template>
