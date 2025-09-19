@@ -1,6 +1,8 @@
 <template>
   <v-app>
     <v-main>
+      <p v-if="isMobile">Mobile</p>
+      <p v-else>Desktop</p>
       <Mobile v-if="isMobile" :apps="appList" />
       <Desktop v-else :apps="appList" />
     </v-main>
@@ -10,9 +12,7 @@
 <script setup lang="ts">
 import { type Component } from 'vue';
 
-import Mobile from './views/Mobile.vue';
-import Desktop from './views/Desktop.vue';
-import Settings from './components/Settings.vue';
+import { AppList } from './apps/AppList'
 import { displayIsMobile } from './composables/isMobile';
 
 const isMobile = displayIsMobile();
@@ -27,7 +27,7 @@ const appList: App[] = [
   {
     name: "Settings",
     icon: "settings.icon",
-    component: Settings
+    component: AppList.Settings
   }
 ]
 

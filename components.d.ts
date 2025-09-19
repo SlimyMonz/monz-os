@@ -8,7 +8,10 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
-    Settings: typeof import('./src/components/apps/Settings.vue')['default']
+    Desktop: typeof import('./src/views/Desktop.vue')['default']
+    DesktopApp: typeof import('./src/views/DesktopApp.vue')['default']
+    Mobile: typeof import('./src/views/Mobile.vue')['default']
+    MobileApp: typeof import('./src/views/MobileApp.vue')['default']
+    Settings: typeof import('./src/apps/Settings.vue')['default']
   }
 }

@@ -16,7 +16,12 @@ export default defineConfig({
     }),
     // https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/vite-plugin#readme
     Vuetify(),
-    Components(),
+    Components({
+      dirs: ['src/components', 'src/views', 'src/apps'], 
+      extensions: ['vue'],
+      deep: true,
+      dts: './components.d.ts'
+    }),
     Fonts({
       fontsource: {
         families: [
