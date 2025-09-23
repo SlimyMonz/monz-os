@@ -1,8 +1,14 @@
 import { type Component } from 'vue';
 
-import History from './History.vue';
-import Settings from './Settings.vue';
-import Sona from './Sona.vue';
+// Components
+import HistoryComponent from './History.vue';
+import SettingsComponent from './Settings.vue';
+import SonaComponent from './Sona.vue';
+
+// Icons
+import HistoryIcon from '../assets/icons/history.svg';
+import SettingsIcon from '../assets/icons/settings.svg';
+import SonaIcon from '../assets/icons/sona.svg';
 
 export type App = {
     name: string,
@@ -13,18 +19,18 @@ export type App = {
 export const AppList: App[] = [
     {
         name: "History",
-        icon: "history.svg",
-        component: History
+        icon: HistoryIcon,
+        component: HistoryComponent
     },
     {
         name: "Settings",
-        icon: "settings.svg",
-        component: Settings
+        icon: SettingsIcon,
+        component: SettingsComponent
     },
     {
-        name: "Settings",
-        icon: "sona.svg",
-        component: Sona
+        name: "Sona",
+        icon: SonaIcon,
+        component: SonaComponent
     }
 
 ]
