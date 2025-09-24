@@ -15,7 +15,7 @@
 
 
 <script setup lang="ts">
-import { AppList, type App } from '@/apps/AppList'
+import { AppList } from '@/apps/AppList'
 import { useAppState } from '@/composables/useAppState';
 
 const { openApp, isAppOpen } = useAppState();
