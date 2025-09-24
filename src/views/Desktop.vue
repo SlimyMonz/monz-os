@@ -2,12 +2,14 @@
   <div class="desktop-background">
   <MenuBar/>
 
-    <DesktopApp
-      v-for="app in openedApps"
-      :key="app.name"
-      :icon="app.icon"
-      :is="app.component"
-    />
+    <div class="desktop-app-container" v-if="focusedApp">
+      <DesktopApp
+        :app="focusedApp"
+        :key="focusedApp.name"
+        :icon="focusedApp.icon"
+        :is="focusedApp.component"
+      />
+    </div>
 
   <Dock class="dock"/>
   </div>
@@ -15,8 +17,7 @@
 
 <script setup lang="ts">
 import { useAppState } from '@/composables/useAppState';
-
-const { openedApps } = useAppState();
+const { focusedApp } = useAppState();
 </script>
 
 <style lang="css">
@@ -28,7 +29,7 @@ html, body {
 }
 
 .desktop-background {
-  position: fixed; /* Better than absolute or static for full-screen control */
+  position: fixed; 
   top: 0;
   left: 0;
   width: 100%;
@@ -46,12 +47,25 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
+  padding: 0.75rem;
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 0 10px 10px 0;
-  box-shadow: 2px 0 10px rgba(0,0,0,0.2);
-  z-index: 100;
+  backdrop-filter: blur(1rem);
+  border-radius: 0 1rem 1rem 0;
+  box-shadow: 0.2rem 0 1rem rgba(0, 0, 0, 0.2);
+}
+
+.desktop-app-container {
+  position: absolute;
+  top: 3rem;   
+  left: 10rem; 
+  right: 10rem;
+  bottom: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+ 
 }
 
 </style>
