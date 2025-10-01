@@ -1,4 +1,3 @@
-import { type Component } from 'vue';
 
 // Components
 import HistoryComponent from './History.vue';
@@ -10,27 +9,23 @@ import HistoryIcon from '../assets/icons/history.svg';
 import SettingsIcon from '../assets/icons/settings.svg';
 import SonaIcon from '../assets/icons/sona.svg';
 
-export type App = {
-    name: string,
-    icon: string,
-    component: Component
-}
 
-export const AppList: App[] = [
-    {
-        name: "History",
+import type { AppItem } from '@/types';
+
+export const AppList: AppItem[] = [
+        {
+        label: "History",
         icon: HistoryIcon,
         component: HistoryComponent
     },
     {
-        name: "Settings",
+        label: "Settings",
         icon: SettingsIcon,
         component: SettingsComponent
     },
     {
-        name: "Sona",
+        label: "Sona",
         icon: SonaIcon,
-        component: SonaComponent
+        component: SonaComponent,
     }
-
 ]
