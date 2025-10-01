@@ -8,6 +8,8 @@
 </template>
 
 <script setup lang="ts">
+import Mobile from './views/Mobile.vue';
+import Desktop from './views/Desktop.vue';
 
 import { displayIsMobile } from './composables/isMobile';
 

@@ -1,3 +1,11 @@
 <template>
-    <p>Mobile App</p>
+
 </template>
+
+<script setup lang="ts">
+
+</script>
+
+<style scoped>
+
+</style>
