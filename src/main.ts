@@ -8,6 +8,7 @@ import './style.css';
 // PrimeVue
 import PrimeVue from 'primevue/config';
 import Aura from '@primeuix/themes/aura';
+import "primeicons/primeicons.css";
 import { ConfirmationService, DialogService, ToastService } from 'primevue';
 
 import Tooltip from 'primevue/tooltip';
