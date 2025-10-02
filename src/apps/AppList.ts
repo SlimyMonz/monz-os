@@ -9,23 +9,31 @@ import HistoryIcon from '../assets/icons/history.svg';
 import SettingsIcon from '../assets/icons/settings.svg';
 import SonaIcon from '../assets/icons/sona.svg';
 
-
+// Types
+import type { MenuItem } from 'primevue/menuitem';
 import type { AppItem } from '@/types';
+import { markRaw } from 'vue';
 
 export const AppList: AppItem[] = [
         {
         label: "History",
         icon: HistoryIcon,
-        component: HistoryComponent
+        component: markRaw(HistoryComponent)
     },
     {
         label: "Settings",
         icon: SettingsIcon,
-        component: SettingsComponent
+        component: markRaw(SettingsComponent)
     },
     {
         label: "Sona",
         icon: SonaIcon,
-        component: SonaComponent,
+        component: markRaw(SonaComponent)
     }
 ]
+
+export const DockItems: MenuItem[] = AppList.map(app => ({
+    label: app.label,
+    icon: app.icon,
+    app,
+}));
