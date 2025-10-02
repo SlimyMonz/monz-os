@@ -1,23 +1,26 @@
 <!-- Based off of code from: https://primevue.org/dock/ -->
 
 <template>
-    <div class="dock-window dock-advanced">
-    <Dock :model="AppList" position="left">
-        <template #item="{ item: app }">
-            <a v-tooltip.right="app.label" @click="openApp(app)" href="#" class="p-dock-item-link">
-                <img :src="app.icon" style="width: 100%" />
-            </a>
-        </template>
+  <div class="dock-advanced">
+    <Dock :model="DockItems" position="left" style="margin: 1rem">
+      <template #item="{ item }">
+        <img 
+          v-tooltip.right="item.label" 
+          :src="item.icon" 
+          :alt="(item.label as string ?? 'app icon')" 
+          style="width: 64px" 
+          @click="() => openApp(item.app)" />
+      </template>
     </Dock>
-    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-
 import Dock from 'primevue/dock';
+import { DockItems } from '@/apps/AppList';
 import { useAppState } from '@/composables/useAppState';
-import { AppList } from '@/apps/AppList';
 
 const { openApp } = useAppState();
-
 </script>
+
+
