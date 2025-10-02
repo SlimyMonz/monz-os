@@ -2,6 +2,7 @@ import { AppList } from '@/apps/AppList';
 import type { AppItem } from '@/types';
 import { ref } from 'vue';
 
+const focusedApp = ref<AppItem | null> (null);
 const runningApps = ref<AppItem[]>(AppList);
 
 export function useAppState() {
@@ -16,14 +17,13 @@ export function useAppState() {
 
     // "Run" the app:
     runningApps.value[app.id]!.visible = true;
-  }
-
-  function minimizeApp(app: AppItem) {
-    runningApps.value[app.id]!.visible = false;
+    focusedApp.value = app;
   }
 
   function closeApp(app: AppItem) {
+    focusedApp.value = app;
     runningApps.value[app.id]!.visible = false;
+    focusedApp.value = null;
     normalizeZIndexes();
   }
 
@@ -50,9 +50,9 @@ export function useAppState() {
   }
   
   return {
+    focusedApp,
     runningApps,
     openApp,
-    minimizeApp,
     closeApp
   };
 }

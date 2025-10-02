@@ -4,10 +4,13 @@
     <MonzDock></MonzDock>
 
       <Dialog v-for="app in runningApps" 
-      :key="(app.label as string)" 
-      :visible="true" modal 
-      :header="(app.label as string)"
-      :style="{ width: '50vw' }">
+          :key="(app.label as string)" 
+          :visible="(app.visible as boolean)" 
+          :header="(app.label as string)"
+          :style="{ width: '50vw' }"
+          :closeOnEscape="false"
+          :dismissableMask="false"
+          @update:visible="closeApp(app)">
         <component :is="app.component" />
       </Dialog>
 
@@ -22,7 +25,7 @@ import { Dialog } from 'primevue';
 
 import { useAppState } from '@/composables/useAppState';
 
-const { runningApps } = useAppState();
+const { runningApps, closeApp } = useAppState();
 
 </script>
 
