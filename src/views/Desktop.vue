@@ -1,5 +1,5 @@
 <template>
-  <div class="background-container">
+  <div class="background-container" @click.self="defocusApp()">
     <MenuBar></MenuBar>
     <MonzDock></MonzDock>
 
@@ -10,7 +10,9 @@
           :style="{ width: '50vw' }"
           :closeOnEscape="false"
           :dismissableMask="false"
-          @update:visible="closeApp(app)">
+          @update:visible="closeApp(app)"
+          @click="focusApp(app)"
+          >
         <component :is="app.component" />
       </Dialog>
 
@@ -25,7 +27,7 @@ import { Dialog } from 'primevue';
 
 import { useAppState } from '@/composables/useAppState';
 
-const { runningApps, closeApp } = useAppState();
+const { runningApps, closeApp, focusApp, defocusApp } = useAppState();
 
 </script>
 

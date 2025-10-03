@@ -9,7 +9,7 @@
           :src="item.icon" 
           :alt="(item.label as string ?? 'app icon')" 
           style="width: 64px" 
-          @click="() => openApp(item.app)" />
+          @click="openApp(item.app)" />
       </template>
     </Dock>
   </div>
