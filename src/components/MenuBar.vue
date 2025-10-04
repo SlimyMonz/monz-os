@@ -1,7 +1,7 @@
 <!-- Based off of code from: https://primevue.org/dock/ -->
 
 <template>
-    <Menubar :model="menubarItems">
+    <Menubar :model="menubarItems" >
         <template #start>
             <i class="pi pi-apple px-2"></i>
             <span class="app-label px-2">{{ focusedApp.label }}</span>

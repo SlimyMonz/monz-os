@@ -9,6 +9,7 @@
           :src="item.icon" 
           :alt="(item.label as string ?? 'app icon')" 
           style="width: 64px" 
+          class="w-16 h-16 rounded-lg object-cover cursor-pointer transition-transform hover:scale-120" 
           @click="openApp(item.app)" />
       </template>
     </Dock>
@@ -22,5 +23,4 @@ import { useAppState } from '@/composables/useAppState';
 
 const { openApp } = useAppState();
 </script>
-
 
