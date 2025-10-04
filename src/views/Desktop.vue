@@ -4,10 +4,10 @@
     <MonzDock></MonzDock>
 
       <Dialog v-for="app in runningApps" 
-          :key="(app.label as string)" 
+          :key="(app.label)" 
+          :header="(app.label)"
           :visible="(app.visible as boolean)" 
-          :header="(app.label as string)"
-          :style="{ width: '50vw' }"
+          :maximizable="true"
           :closeOnEscape="false"
           :dismissableMask="false"
           @update:visible="closeApp(app)"
@@ -15,6 +15,7 @@
           >
         <component :is="app.component" />
       </Dialog>
+
 
   </div>
 </template>

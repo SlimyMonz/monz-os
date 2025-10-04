@@ -4,51 +4,42 @@ import type { AppItem } from '@/types';
 import { defineComponent } from 'vue';
 
 const desktopApp: AppItem = {
-  id: 0,
-  zIndex: 0,
   label: "Desktop",
   component: defineComponent({})
-}
+};
 
 const focusedApp = ref<AppItem>(desktopApp);
 const runningApps = ref<AppItem[]>(AppList);
 
-function normalizeZIndexes() {
-  const activeApps = runningApps.value.filter((app): app is AppItem => app !== null);
-  activeApps.sort((a, b) => a.zIndex - b.zIndex);
-  activeApps.forEach((app, index) => {
-    app.zIndex = index;
-  });
-}
-
-function getMaxZIndex() {
-  const activeApps = runningApps.value.filter((app): app is AppItem => app !== null);
-  if (activeApps.length === 0) return 0;
-  return Math.max(...activeApps.map(app => app.zIndex));
+function findAppByLabel(label: string): AppItem | undefined {
+  return runningApps.value.find(app => app.label === label);
 }
 
 function openApp(app: AppItem) {
-  focusApp(app);
-  runningApps.value[app.id]!.visible = true;
+  const found = findAppByLabel(app.label);
+  if (found) {
+    focusApp(found);
+    found.visible = true;
+  }
 }
 
 function closeApp(app: AppItem) {
-  normalizeZIndexes();
-  runningApps.value[app.id]!.visible = false;
-  
+  const found = findAppByLabel(app.label);
+  if (found) {
+    found.visible = false;
+  }
 }
 
 function focusApp(app: AppItem) {
-  normalizeZIndexes();
-  const maxZIndex = getMaxZIndex();
-  runningApps.value[app.id]!.zIndex = maxZIndex + 1;
-  focusedApp.value = runningApps.value[app.id]!;
+  const found = findAppByLabel(app.label);
+  if (found) {
+    focusedApp.value = found;
+  }
 }
 
 function defocusApp() {
   focusedApp.value = desktopApp;
 }
-
 
 export function useAppState() {
   return {
