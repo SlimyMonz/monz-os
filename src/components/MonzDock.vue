@@ -1,32 +1,40 @@
-<!-- Based off of code from: https://primevue.org/dock/ -->
-
 <template>
-  <div class="dock-advanced">
-    <Dock :model="DockItems" position="left" style="margin: 1rem">
-      <template #item="{ item }">
-        <img v-tooltip.right="item.label" :src="item.icon" :alt="(item.label as string ?? 'app icon')"
-          style="width: 64px"
-          class="w-16 h-16 rounded-lg object-cover cursor-pointer transition-transform hover:scale-120"
-          @click="onDockItemClick($event, item)" />
-      </template>
-    </Dock>
+  <!-- Dock container -->
+  <div
+    class="fixed left-4 top-1/2 -translate-y-1/2 flex flex-col items-center p-3 rounded-2xl bg-white/10 backdrop-blur"
+  >
+    <div
+      v-for="(app, index) in AppList"
+      :key="index"
+      class="relative m-3 flex flex-col items-center group"
+      @click="openAppFromItem(app)"
+    >
+      <!-- App icon with scaling on hover -->
+      <div
+        class="w-14 h-14 flex items-center justify-center rounded-2xl transition-transform duration-200 group-hover:scale-120"
+      >
+        <img
+          :src="app.icon"
+          alt="App icon"
+          class="w-full h-full object-contain rounded-xl"
+        />
+      </div>
+
+      <!-- Indicator right of icon -->
+        <div
+          v-if="isAppOpen(app)"
+          class="absolute right-[-0.80rem] top-1/2 transform -translate-y-1/2 w-[0.1rem] h-8 rounded-sm bg-white opacity-75 pointer-events-none"
+        ></div>
+    </div>
   </div>
 </template>
 
+
 <script setup lang="ts">
-import Dock from 'primevue/dock';
-import { DockItems } from '@/apps/AppList';
+import { AppList } from '@/apps/AppList'
 import { useAppState } from '@/composables/useAppState';
-import type { MenuItem } from 'primevue/menuitem';
 
-const { openApp } = useAppState();
+const { openAppFromItem, isAppOpen } = useAppState();
 
-const onDockItemClick = (event: PointerEvent, item: MenuItem) => {
-  if (item.command) {
-    item.command({ originalEvent: event, item });
-  } else {
-    openApp(item.app);
-  }
-  event.preventDefault();
-};
 </script>
+

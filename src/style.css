@@ -1,17 +1,21 @@
 @import "tailwindcss";
 
+/* Prevent scrolling on the entire page */
 html, body {
   margin: 0;
   padding: 0;
-  overflow: hidden;  /* Prevent scrolling on the entire page */
+  overflow: hidden;  
   height: 100%;
   width: 100%;
 }
 
-.p-tooltip-right {
-  margin-left: 1.25rem; /* Default is ~0.25rem; Moves tooltip outside Dock*/
+/* Only round the bottom corners of the Menu Bar. */
+.p-menubar {
+    border-radius: 0 0 1rem 1rem !important; 
 }
 
-.p-menubar {
-    border-radius: 0 0 1rem 1rem !important; /* Only round the bottom corners of the Menu Bar. */
+/* Remove outline on dialog buttons */
+.p-dialog .p-dialog-header button:focus {
+  outline: none !important;
+  box-shadow: none !important;
 }
