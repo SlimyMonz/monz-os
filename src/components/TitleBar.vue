@@ -1,8 +1,7 @@
 <template>
-  <div
+  <div 
     class="title-bar flex justify-between items-center cursor-move select-none px-3 h-8 text-xs font-sans rounded-t border-b border-white/10"
     style="user-select: none;"
-    @mousedown="$emit('drag')"
   >
     <span class="title truncate font-semibold cursor-default" :title="title">
       {{ title }}
@@ -20,4 +19,5 @@
 
 <script setup lang="ts">
 defineProps<{ title: string }>();
+
 </script>
