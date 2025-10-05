@@ -1,7 +1,30 @@
-import type { MenuItem } from 'primevue/menuitem';
 import type { Component } from 'vue';
 
-export interface AppItem extends MenuItem {
-    label: string, // label is required
+export interface AppItem {
+    label: string,
+    icon: string,
     component: Component; 
+    command?: () => void;
+}
+
+export interface Settings {
+  username: string
+}
+
+export interface AppWindow {
+  id: string;
+  label: string;
+  active: boolean;
+  position: {
+    x: number;
+    y: number;
+  };
+  size: {
+    width: number;
+    height: number;
+  };
+  minimized: boolean;
+  maximized: boolean;
+  zIndex: number;
+  component: Component;
 }
