@@ -5,21 +5,20 @@ import SettingsComponent from './Settings.vue';
 import SonaComponent from './Sona.vue';
 
 // Icons
-import HistoryIcon from '@/assets/icons/history.svg';
-import SettingsIcon from '@/assets/icons/settings.svg';
-import SonaIcon from '@/assets/icons/sona.svg';
-import BlueskyIcon from '@/assets/icons/bluesky.svg';
-import FuraffinityIcon from '@/assets/icons/furaffinity.svg';
-import GithubIcon from '@/assets/icons/github.svg';
-import MastodonIcon from '@/assets/icons/mastodon.svg';
+import HistoryIcon from '@icons/history.svg';
+import SettingsIcon from '@icons/settings.svg';
+import SonaIcon from '@icons/sona.svg';
+import BlueskyIcon from '@icons/bluesky.svg';
+import FuraffinityIcon from '@icons/furaffinity.svg';
+import GithubIcon from '@icons/github.svg';
+import MastodonIcon from '@icons/mastodon.svg';
 
 // Types
-import type { MenuItem } from 'primevue/menuitem';
 import type { AppItem } from '@/types';
 import { defineComponent, markRaw } from 'vue';
 
-
 const emptyComponent = markRaw(defineComponent({}));
+const openLink = (url: string) => () => window.open(url);
 
 export const AppList: AppItem[] = [
     {
@@ -42,31 +41,24 @@ export const AppList: AppItem[] = [
         label: "Bluesky",
         icon: BlueskyIcon,
         component: emptyComponent,
-        command: () => window.open("https://bsky.app/profile/monz.us")
+        command: openLink("https://bsky.app/profile/monz.us")
     },
     {
         label: "Furaffinity",
         icon: FuraffinityIcon,
         component: emptyComponent,
-        command: () => window.open("https://www.furaffinity.net/user/slimymonz")
+        command: openLink("https://www.furaffinity.net/user/slimymonz")
     },
     {
         label: "Github",
         icon: GithubIcon,
         component: emptyComponent,
-        command: () => window.open("https://github.com/SlimyMonz")
+        command: openLink("https://github.com/SlimyMonz")
     },
     {
         label: "Mastodon",
         icon: MastodonIcon,
         component: emptyComponent,
-        command: () => window.open("https://yiff.life/@slimymonz")
+        command: openLink("https://yiff.life/@slimymonz")
     }
 ]
-
-export const DockItems: MenuItem[] = AppList.map(app => ({
-    label: app.label,
-    icon: app.icon,
-    command: app.command,
-    app,
-}));
