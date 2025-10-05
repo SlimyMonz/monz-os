@@ -8,14 +8,3 @@ html, body {
   height: 100%;
   width: 100%;
 }
-
-/* Only round the bottom corners of the Menu Bar. */
-.p-menubar {
-    border-radius: 0 0 1rem 1rem !important; 
-}
-
-/* Remove outline on dialog buttons */
-.p-dialog .p-dialog-header button:focus {
-  outline: none !important;
-  box-shadow: none !important;
-}

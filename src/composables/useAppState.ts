@@ -1,7 +1,9 @@
-import { defineComponent, ref } from 'vue';
+// stores/appStore.ts
+import { defineStore } from 'pinia';
+import { ref, computed } from 'vue';
 import type { AppItem, AppWindow } from '@/types';
+import { defineComponent } from 'vue';
 
-// Desktop is just a placeholder so that I don't have to set focusedApp to null.
 const desktopApp: AppWindow = {
   id: 'desktop',
   label: 'Desktop',
@@ -14,97 +16,106 @@ const desktopApp: AppWindow = {
   size: { width: 0, height: 0 }
 };
 
-// Running app windows and focus.
-const runningApps = ref<AppWindow[]>([]);
-const focusedApp = ref<AppWindow>(desktopApp);
+export const useAppStore = defineStore('appStore', () => {
+  const runningApps = ref<AppWindow[]>([]);
+  const focusedApp = ref<AppWindow>(desktopApp);
 
-function getMaxZIndex(): number {
-  return Math.max(0, ...runningApps.value.map(app => app.zIndex));
-}
+  // Derived/computed state example (if needed)
+  const activeApps = computed(() =>
+    runningApps.value.filter(app => app.active && !app.minimized)
+  );
 
-function normalizeZIndexes() {
-  const activeApps = runningApps.value.filter(app => app.active && !app.minimized);
-  activeApps.sort((a, b) => a.zIndex - b.zIndex);
-  activeApps.forEach((app, index) => {
-    app.zIndex = index + 1;
-  });
-}
-
-function focusApp(app: AppWindow) {
-  normalizeZIndexes();
-  app.zIndex = getMaxZIndex() + 1;
-  focusedApp.value = app;
-}
-
-function defocusApp() {
-  focusedApp.value = desktopApp;
-}
-
-function openAppFromItem(item: AppItem) {
-
-  if (item.command) {
-    item.command();
-    return; // Don't open a new AppWindow if there's a custom command.
+  function getMaxZIndex() {
+    return activeApps.value.length > 0
+      ? Math.max(...activeApps.value.map(app => app.zIndex))
+      : 0;
   }
 
-  // Try to find existing window by label
-  const existing = runningApps.value.find(w => w.label === item.label);
-
-  if (existing) {
-    existing.active = true;
-    existing.minimized = false;
-    focusApp(existing);
-    return; // Only one AppWindow per app.
+  function normalizeZIndexes() {
+    activeApps.value
+      .sort((a, b) => a.zIndex - b.zIndex)
+      .forEach((app, index) => {
+        app.zIndex = index + 1;
+      });
   }
 
-  // Create new window instance
-  const newApp: AppWindow = {
-    id: item.label.toLowerCase(), 
-    label: item.label,
-    component: item.component,
-    active: true,
-    minimized: false,
-    maximized: false,
-    zIndex: getMaxZIndex() + 1,
-    position: { x: 100, y: 100 },
-    size: { width: 640, height: 480 },
-  };
+  function focusApp(app: AppWindow) {
+    normalizeZIndexes();
+    app.zIndex = getMaxZIndex() + 1;
+    focusedApp.value = app;
+  }
 
-  runningApps.value.push(newApp);
-  focusApp(newApp);
-}
+  function defocusApp() {
+    focusedApp.value = desktopApp;
+  }
 
-function closeApp(app: AppWindow) {
-  app.active = false;
-  defocusApp();
-}
+  function openAppFromItem(item: AppItem) {
+    if (item.command) {
+      item.command();
+      return;
+    }
 
-function minimizeApp(app: AppWindow) {
-  app.minimized = true;
-  defocusApp();
-}
+    const existing = runningApps.value.find(w => w.label === item.label);
 
-function restoreApp(app: AppWindow) {
-  app.minimized = false;
-  app.active = true;
-  focusApp(app);
-}
+    if (existing) {
+      existing.active = true;
+      existing.minimized = false;
+      focusApp(existing);
+      return;
+    }
 
-function toggleMaximizeApp(app: AppWindow) {
-  app.maximized = !app.maximized;
-}
+    const newApp: AppWindow = {
+      id: item.label.toLowerCase(),
+      label: item.label,
+      component: item.component,
+      active: true,
+      minimized: false,
+      maximized: false,
+      zIndex: getMaxZIndex() + 1,
+      position: { x: 200, y: 200 },
+      size: { width: 640, height: 480 }
+    };
 
-function isAppOpen(app: AppItem): boolean {
-  const id = app.label.toLowerCase();
-  return runningApps.value.some(runningApp => runningApp.id === id);
-}
+    runningApps.value.push(newApp);
+    focusApp(newApp);
+  }
 
+  function closeApp(app: AppWindow) {
+    app.active = false;
+    defocusApp();
+  }
 
-export function useAppState() {
+  function closeAppFromItem(item: AppItem) {
+    const app = runningApps.value.find(w => w.label === item.label);
+    if (app) closeApp(app);
+  }
+
+  function minimizeApp(app: AppWindow) {
+    app.minimized = true;
+    defocusApp();
+  }
+
+  function restoreApp(app: AppWindow) {
+    app.minimized = false;
+    app.active = true;
+    focusApp(app);
+  }
+
+  function toggleMaximizeApp(app: AppWindow) {
+    app.maximized = !app.maximized;
+  }
+
+  function isAppOpen(item: AppItem) {
+    const id = item.label.toLowerCase();
+    return runningApps.value.some(app => app.id === id);
+  }
+
   return {
     runningApps,
     focusedApp,
+    activeApps,
     openAppFromItem,
+    closeAppFromItem,
     closeApp,
     minimizeApp,
     restoreApp,
@@ -113,4 +124,4 @@ export function useAppState() {
     defocusApp,
     isAppOpen
   };
-}
+});

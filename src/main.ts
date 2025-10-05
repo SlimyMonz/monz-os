@@ -5,26 +5,11 @@ import App from './App.vue'
 // Tailwind CSS
 import './style.css';
 
-// PrimeVue
-import PrimeVue from 'primevue/config';
-import Aura from '@primeuix/themes/aura';
-import "primeicons/primeicons.css";
-import { ConfirmationService, DialogService, ToastService } from 'primevue';
+// Pinia
+import { createPinia } from 'pinia'
 
-import Tooltip from 'primevue/tooltip';
-
+const pinia = createPinia()
 const app = createApp(App);
 
-app.use(PrimeVue, {
-    theme: {
-        preset: Aura
-    }
-});
-
-app.directive('tooltip', Tooltip);
-
-app.use(ConfirmationService);
-app.use(ToastService);
-app.use(DialogService);
-
-app.mount('#app');
+app.use(pinia)
+app.mount('#app')

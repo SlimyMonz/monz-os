@@ -32,9 +32,9 @@
 
 <script setup lang="ts">
 import { AppList } from '@/apps/AppList'
-import { useAppState } from '@/composables/useAppState';
+import { useAppStore } from '@/composables/useAppState';
 
-const { openAppFromItem, isAppOpen } = useAppState();
+const { openAppFromItem, isAppOpen } = useAppStore();
 
 </script>
 
