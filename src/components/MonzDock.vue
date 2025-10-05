@@ -22,7 +22,7 @@
 
       <!-- Indicator right of icon -->
         <div
-          v-if="isAppOpen(app)"
+          v-if="isAppRunning(app)"
           class="absolute right-[-0.80rem] top-1/2 transform -translate-y-1/2 w-[0.1rem] h-8 rounded-sm bg-white opacity-75 pointer-events-none"
         ></div>
     </div>
@@ -34,7 +34,7 @@
 import { AppList } from '@/apps/AppList'
 import { useAppStore } from '@/composables/useAppState';
 
-const { openAppFromItem, isAppOpen } = useAppStore();
+const { openAppFromItem, isAppRunning } = useAppStore();
 
 </script>
 
