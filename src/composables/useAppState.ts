@@ -105,9 +105,11 @@ export const useAppStore = defineStore('appStore', () => {
     app.maximized = !app.maximized;
   }
 
-  function isAppOpen(item: AppItem) {
+  function isAppRunning(item: AppItem) {
     const id = item.label.toLowerCase();
-    return runningApps.value.some(app => app.id === id);
+    const runningApp = runningApps.value.find(app => app.id === id);
+    if (runningApp != undefined && runningApp.active) return true;
+    else return false;
   }
 
   return {
@@ -122,6 +124,6 @@ export const useAppStore = defineStore('appStore', () => {
     toggleMaximizeApp,
     focusApp,
     defocusApp,
-    isAppOpen
+    isAppRunning
   };
 });
