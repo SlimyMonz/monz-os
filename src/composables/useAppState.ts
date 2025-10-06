@@ -20,7 +20,6 @@ export const useAppStore = defineStore('appStore', () => {
   const runningApps = ref<AppWindow[]>([]);
   const focusedApp = ref<AppWindow>(desktopApp);
 
-  // Derived/computed state example (if needed)
   const activeApps = computed(() =>
     runningApps.value.filter(app => app.active && !app.minimized)
   );
