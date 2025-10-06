@@ -1,4 +1,3 @@
-// stores/appStore.ts
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 import type { AppItem, AppWindow } from '@/types';
