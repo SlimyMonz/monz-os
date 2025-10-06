@@ -1,23 +1,25 @@
 <template>
-  <div 
-    class="title-bar flex justify-between items-center cursor-move select-none px-3 h-8 text-xs font-sans rounded-t border-b border-white/10"
-    style="user-select: none;"
-  >
-    <span class="title truncate font-semibold cursor-default" :title="title">
-      {{ title }}
-    </span>
-    <button
-      class="close-btn w-5 h-5 flex items-center justify-center rounded-full bg-red-600 hover:bg-red-700 text-white text-sm leading-none"
-      @click="$emit('close')"
-      aria-label="Close"
-      title="Close"
-    >
-      ×
-    </button>
+  <div class="title-bar flex items-center justify-between px-3 py-1.5 bg-gray-100 border-b border-gray-300 cursor-move select-none relative">
+    <!-- Left: empty spacer to balance -->
+    <div class="w-[60px]"></div>
+
+    <div class="absolute inset-0 flex justify-center items-center pointer-events-none">
+      <span class="text-sm text-gray-700 font-medium truncate">{{ title }}</span>
+    </div>
+
+    <!-- macOS-like control buttons -->
+    <div class="flex space-x-2 z-10">
+      <button class="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600" @click="$emit('maximize')"></button>
+      <button class="w-3 h-3 rounded-full bg-yellow-400 hover:bg-yellow-500" @click="$emit('minimize')"></button>
+      <button class="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600" @click="$emit('close')"></button>
+    </div>
   </div>
 </template>
 
-<script setup lang="ts">
-defineProps<{ title: string }>();
 
+
+<script setup lang="ts">
+defineProps<{
+  title: string
+}>()
 </script>

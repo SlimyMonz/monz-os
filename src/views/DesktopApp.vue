@@ -1,24 +1,28 @@
 <template>
   <draggable-resizable-vue
-  v-model:x="app.position.x"
-  v-model:y="app.position.y"
-  v-model:w="app.size.width"
-  v-model:h="app.size.height"
-  :z="app.zIndex"
+  v-model:x="computedX"
+  v-model:y="computedY"
+  v-model:w="computedWidth"
+  v-model:h="computedHeight"
+  :z="computedZ"
   :drag-handle="'.title-bar'"
   :parent="true"
   handles-type="borders"
   :active-on-hover="true"
+  class="!border-none !outline-none"
   @mousedown="focusApp(app)"
 >
   <!-- Use flex layout to keep TitleBar and content inside total height -->
-  <div class="flex flex-col h-full w-full">
+  <div class="flex flex-col h-full w-full rounded-md shadow-md border border-gray-300 bg-white overflow-hidden">
+
     <TitleBar
       class="title-bar"
       :title="app.label"
       @close="closeApp(app)"
+      @minimize="minimizeApp(app)"
+      @maximize="toggleMaximizeApp(app)"
     />
-    <div class="flex-1 overflow-hidden">
+    <div class="flex-1 overflow-auto p-0 border-0">
       <component :is="app.component" />
     </div>
   </div>
@@ -33,9 +37,60 @@ import TitleBar from '@/components/TitleBar.vue';
 import { useAppStore } from '@/composables/useAppState';
 import DraggableResizableVue from 'draggable-resizable-vue3'
 
-const { closeApp, focusApp } = useAppStore();
-defineProps<{ app: AppWindow }>();
+const { closeApp, focusApp, toggleMaximizeApp, minimizeApp } = useAppStore();
+const props = defineProps<{ app: AppWindow }>();
+
+import { useWindowSize } from '@/composables/windowState';
+import { computed } from 'vue';
+
+const { windowSize } = useWindowSize();
+
+const computedX = computed({
+  get() {
+    // When maximized, position is always 0 on X axis (top-left)
+    return props.app.maximized ? 0 : props.app.position.x;
+  },
+  set(val) {
+    if (!props.app.maximized) props.app.position.x = val;
+  }
+});
+
+const computedY = computed({
+  get() {
+    // When maximized, position is always 0 on Y axis (top-left)
+    return props.app.maximized ? 0 : props.app.position.y;
+  },
+  set(val) {
+    if (!props.app.maximized) props.app.position.y = val;
+  }
+});
+
+const computedWidth = computed({
+  get() {
+    // Use full window width when maximized, else stored width
+    return props.app.maximized ? windowSize.value.width : props.app.size.width;
+  },
+  set(val) {
+    if (!props.app.maximized) props.app.size.width = val;
+  }
+});
+
+const computedHeight = computed({
+  get() {
+    // Use full window height when maximized, else stored height
+    return props.app.maximized ? windowSize.value.height : props.app.size.height;
+  },
+  set(val) {
+    if (!props.app.maximized) props.app.size.height = val;
+  }
+});
+
+const computedZ = computed(() => {
+  // Use highest zIndex when maximized, else app's current zIndex
+  return props.app.maximized ? 9999 : props.app.zIndex;
+});
 
 </script>
+
 
 
