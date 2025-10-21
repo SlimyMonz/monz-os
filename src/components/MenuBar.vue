@@ -6,32 +6,35 @@
 
     <template v-else>
       <header
-        class="fixed top-0 left-0 right-0 h-8 flex items-center justify-between px-3 bg-white/10 backdrop-blur-sm text-white text-xs font-sans select-none z-50 shadow-md"
+        class="fixed top-0 left-0 right-0 h-8 flex items-center justify-between px-3 bg-white/10 backdrop-blur-sm text-white text-xs font-sans select-none z-50 shadow-md relative"
         style="user-select: none;">
-        <!-- Left: Apple logo & app name -->
-        <div class="flex items-center space-x-2 min-w-[100px]">
+
+        <!-- Left: Logo & app name + App Menu -->
+        <div class="flex items-center space-x-2 min-w-[100px] flex-shrink-0">
           <span class="text-lg font-semibold cursor-default select-none"></span>
           <span class="hidden sm:inline truncate cursor-default select-none">
             {{ appLabel }}
           </span>
+          <AppMenu :appMenu="appMenu" />
         </div>
 
-        <AppMenu :appMenu="appMenu" />
-
-        <!-- Center: Date & time -->
-        <div class="flex-1 text-center font-mono tracking-wide select-none">
+        <!-- Center: Date & time  -->
+        <div
+          class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 font-mono tracking-wide select-none whitespace-nowrap"
+          style="pointer-events: none;">
           {{ currentTime.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' }) }}
           &nbsp;
           {{ currentTime.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit', second: '2-digit' }) }}
         </div>
 
         <!-- Right: System icons -->
-        <div class="flex items-center space-x-3 min-w-[80px] justify-end pr-1 select-none">
+        <div class="flex items-center space-x-3 min-w-[80px] justify-end pr-1 select-none flex-shrink-0">
           <span title="Wi-Fi" class="cursor-default select-none">📶</span>
           <span title="Battery" class="cursor-default select-none">🔋</span>
           <span title="User" class="cursor-default select-none">👤</span>
         </div>
       </header>
+
     </template>
   </div>
 </template>
