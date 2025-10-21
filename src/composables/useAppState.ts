@@ -12,7 +12,8 @@ const desktopApp: AppWindow = {
   maximized: false,
   zIndex: 0,
   position: { x: 0, y: 0 },
-  size: { width: 0, height: 0 }
+  size: { width: 0, height: 0 },
+  menu: [{label: 'Desktop'}]
 };
 
 export const useAppStore = defineStore('appStore', () => {
