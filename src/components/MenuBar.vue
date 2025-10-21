@@ -6,21 +6,18 @@
 
     <template v-else>
       <header
-        class="fixed top-0 left-0 right-0 h-8 flex items-center justify-between px-3 bg-white/10 backdrop-blur-sm text-white text-xs font-sans select-none z-50 shadow-md relative"
+        class="fixed top-0 left-0 right-0 h-8 flex items-center justify-between px-3 bg-black/50 text-white text-xs font-sans select-none z-50 relative"
         style="user-select: none;">
 
-        <!-- Left: Logo & app name + App Menu -->
+        <!-- Left: Logo + App Menu -->
         <div class="flex items-center space-x-2 min-w-[100px] flex-shrink-0">
-          <span class="text-lg font-semibold cursor-default select-none"></span>
-          <span class="hidden sm:inline truncate cursor-default select-none">
-            {{ appLabel }}
-          </span>
+          <span class="text-lg font-semibold cursor-default select-none">Z</span>
           <AppMenu :appMenu="appMenu" />
         </div>
 
         <!-- Center: Date & time  -->
         <div
-          class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 font-mono tracking-wide select-none whitespace-nowrap"
+          class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 tracking-wide select-none whitespace-nowrap"
           style="pointer-events: none;">
           {{ currentTime.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' }) }}
           &nbsp;
@@ -53,6 +50,5 @@ const { currentTime } = useCurrentTime();
 const appStore = useAppStore();
 const { focusedApp } = storeToRefs(appStore);
 
-const appLabel = computed(() => focusedApp.value.label);
 const appMenu = computed(() => focusedApp.value.menu);
 </script>

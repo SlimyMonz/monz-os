@@ -1,17 +1,19 @@
 <template>
-    <nav v-if="appMenu?.length" class="flex ml-3 space-x-3">
+    <nav v-if="appMenu?.length" class="flex items-center space-x-3">
+
         <!-- Menu Bar Parent -->
         <div v-for="item in appMenu" :key="item.label" class="relative group">
             <span
-                class="text-xs font-sans text-white cursor-pointer px-3 py-1 rounded-lg hover:bg-white/20 transition select-none"
+                class="text-xs font-sans text-white cursor-pointer px-3 h-8 flex items-center rounded-xl hover:bg-white/50 rounded-b-none transition select-none"
                 @click="item.command?.()">
                 {{ item.label }}
             </span>
+
             <!-- Menu Bar Children -->
             <div v-if="item.children?.length"
-                class="absolute left-0 mt-0.75 hidden group-hover:block bg-white/75 text-gray-900 rounded-xl shadow-lg min-w-[150px] border border-gray-300">
+                class="absolute left-0 hidden group-hover:block bg-black/50 text-white hover:text-black-600 rounded-xl rounded-t-none min-w-[150px]">
                 <div v-for="child in item.children" :key="child.label"
-                    class="px-3 py-1 m-1 hover:bg-white hover:rounded-lg cursor-pointer whitespace-nowrap select-none"
+                    class="px-3 py-1 m-1 hover:bg-white/50 hover:rounded-lg cursor-pointer whitespace-nowrap select-none hover:text-black"
                     @click.stop="child.command?.()">
                     {{ child.label }}
                 </div>
