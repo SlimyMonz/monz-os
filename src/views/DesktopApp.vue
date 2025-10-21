@@ -4,6 +4,8 @@
     v-model:y="computedY"
     v-model:w="computedWidth"
     v-model:h="computedHeight"
+    :min-width="320"
+    :min-height="200"
     :z="computedZ"
     :drag-handle="'.title-bar'"
     :parent="true"
