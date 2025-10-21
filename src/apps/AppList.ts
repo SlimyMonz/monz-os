@@ -16,6 +16,7 @@ import MastodonIcon from '@icons/mastodon.svg';
 // Types
 import type { AppItem } from '@/types';
 import { defineComponent, markRaw } from 'vue';
+import { exampleMenu } from './ExampleMenu';
 
 const emptyComponent = markRaw(defineComponent({}));
 const openLink = (url: string) => () => window.open(url);
@@ -25,17 +26,20 @@ export const AppList: AppItem[] = [
         label: "Settings",
         icon: SettingsIcon,
         component: markRaw(SettingsComponent),
+        menu: exampleMenu
     },
     {
         label: "History",
         icon: HistoryIcon,
         component: markRaw(HistoryComponent),
+        menu: exampleMenu
     },
 
     {
         label: "Sona",
         icon: SonaIcon,
         component: markRaw(SonaComponent),
+        menu: exampleMenu
     },
     {
         label: "Bluesky",

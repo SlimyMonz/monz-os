@@ -71,7 +71,8 @@ export const useAppStore = defineStore('appStore', () => {
       maximized: false,
       zIndex: getMaxZIndex() + 1,
       position: { x: 200, y: 200 },
-      size: { width: 640, height: 480 }
+      size: { width: 640, height: 480 },
+      menu: item.menu
     };
 
     runningApps.value.push(newApp);

@@ -1,10 +1,17 @@
 import type { Component } from 'vue';
 
 export interface AppItem {
-    label: string,
-    icon: string,
+    label: string;
+    icon: string;
     component: Component; 
     command?: () => void;
+    menu?: MenuItem[]
+}
+
+export interface MenuItem {
+  label: string;
+  command?: () => void;
+  children?: MenuItem[];
 }
 
 export interface Settings {
@@ -27,4 +34,6 @@ export interface AppWindow {
   maximized: boolean;
   zIndex: number;
   component: Component;
+  menu?: MenuItem[];
 }
+
