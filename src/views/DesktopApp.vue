@@ -9,7 +9,7 @@
     :parent="true"
     handles-type="borders"
     :active-on-hover="true"
-    class="!border-none !outline-none rounded-md overflow-hidden"
+    class="!border-none !outline-none rounded-md overflow-hidden shadow-xl/50"
     @mousedown="focusApp(app)"
   >
     <div class="flex flex-col h-full w-full">
@@ -91,4 +91,3 @@ const computedZ = computed(() => {
 });
 
 </script>
-

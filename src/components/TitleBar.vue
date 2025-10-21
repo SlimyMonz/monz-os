@@ -1,5 +1,5 @@
 <template>
-  <div class="title-bar flex items-center justify-between px-3 py-2 bg-black/50 text-white border-b border-gray-300 cursor-move select-none relative">
+  <div class="title-bar flex items-center justify-between px-3 py-2 bg-black/50 backdrop-blur text-white cursor-move select-none relative">
     <!-- Left: empty spacer to balance -->
     <div class="w-[60px]"></div>
 

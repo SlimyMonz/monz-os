@@ -1,7 +1,7 @@
 <template>
   <!-- Dock container -->
   <div
-    class="fixed left-4 top-1/2 -translate-y-1/2 flex flex-col items-center p-3 rounded-2xl bg-black/50"
+    class="fixed left-4 top-1/2 -translate-y-1/2 flex flex-col items-center p-3 rounded-2xl bg-black/50 backdrop-blur shadow-md/50"
   >
     <div
       v-for="(app, index) in AppList"

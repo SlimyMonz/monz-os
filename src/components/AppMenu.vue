@@ -11,9 +11,9 @@
 
             <!-- Menu Bar Children -->
             <div v-if="item.children?.length"
-                class="absolute left-0 hidden group-hover:block bg-black/50 text-white hover:text-black-600 rounded-xl rounded-t-none min-w-[150px]">
+                class="absolute left-0 hidden group-hover:block bg-black/70 text-white hover:text-black-600 rounded-xl rounded-t-none min-w-[150px]">
                 <div v-for="child in item.children" :key="child.label"
-                    class="px-3 py-1 m-1 hover:bg-white/50 hover:rounded-lg cursor-pointer whitespace-nowrap select-none hover:text-black"
+                    class="px-3 py-1 m-1 hover:bg-white/70 hover:rounded-lg cursor-pointer whitespace-nowrap select-none hover:text-black"
                     @click.stop="child.command?.()">
                     {{ child.label }}
                 </div>
