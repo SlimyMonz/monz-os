@@ -1,10 +1,10 @@
 <template>
-  <div class="title-bar flex items-center justify-between px-3 py-1.5 bg-gray-100 border-b border-gray-300 cursor-move select-none relative">
+  <div class="title-bar flex items-center justify-between px-3 py-2 bg-black/50 text-white border-b border-gray-300 cursor-move select-none relative">
     <!-- Left: empty spacer to balance -->
     <div class="w-[60px]"></div>
 
     <div class="absolute inset-0 flex justify-center items-center pointer-events-none">
-      <span class="text-sm text-gray-700 font-medium truncate">{{ title }}</span>
+      <span class="text-sm text-white font-medium truncate">{{ title }}</span>
     </div>
 
     <!-- macOS-like control buttons -->
@@ -15,8 +15,6 @@
     </div>
   </div>
 </template>
-
-
 
 <script setup lang="ts">
 defineProps<{

@@ -1,33 +1,34 @@
 <template>
   <draggable-resizable-vue
-  v-model:x="computedX"
-  v-model:y="computedY"
-  v-model:w="computedWidth"
-  v-model:h="computedHeight"
-  :z="computedZ"
-  :drag-handle="'.title-bar'"
-  :parent="true"
-  handles-type="borders"
-  :active-on-hover="true"
-  class="!border-none !outline-none"
-  @mousedown="focusApp(app)"
->
-  <!-- Use flex layout to keep TitleBar and content inside total height -->
-  <div class="flex flex-col h-full w-full rounded-md shadow-md border border-gray-300 bg-white overflow-hidden">
+    v-model:x="computedX"
+    v-model:y="computedY"
+    v-model:w="computedWidth"
+    v-model:h="computedHeight"
+    :z="computedZ"
+    :drag-handle="'.title-bar'"
+    :parent="true"
+    handles-type="borders"
+    :active-on-hover="true"
+    class="!border-none !outline-none rounded-md overflow-hidden"
+    @mousedown="focusApp(app)"
+  >
+    <div class="flex flex-col h-full w-full">
 
-    <TitleBar
-      class="title-bar"
-      :title="app.label"
-      @close="closeApp(app)"
-      @minimize="minimizeApp(app)"
-      @maximize="toggleMaximizeApp(app)"
-    />
-    <div class="flex-1 overflow-auto p-0 border-0">
-      <component :is="app.component" />
+      <div class="cursor-move select-none">
+        <TitleBar
+          :title="app.label"
+          @close="closeApp(app)"
+          @minimize="minimizeApp(app)"
+          @maximize="toggleMaximizeApp(app)"
+        />
+      </div>
+
+      <!-- Scrollable content -->
+      <div class="flex-1 overflow-auto bg-white/50 pr-0.75">
+        <component :is="app.component" />
+      </div>
     </div>
-  </div>
-</draggable-resizable-vue>
-
+  </draggable-resizable-vue>
 </template>
 
 
@@ -86,11 +87,8 @@ const computedHeight = computed({
 });
 
 const computedZ = computed(() => {
-  // Use highest zIndex when maximized, else app's current zIndex
-  return props.app.maximized ? 9999 : props.app.zIndex;
+  return props.app.zIndex;
 });
 
 </script>
-
-
 

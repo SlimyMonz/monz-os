@@ -6,7 +6,7 @@
 
     <template v-else>
       <header
-        class="fixed top-0 left-0 right-0 h-8 flex items-center justify-between px-3 bg-black/50 text-white text-xs font-sans select-none z-50 relative"
+        class="fixed top-0 left-0 right-0 flex items-center justify-between px-3 bg-black/50 text-white text-xs font-sans select-none z-50 relative"
         style="user-select: none;">
 
         <!-- Left: Logo + App Menu -->
