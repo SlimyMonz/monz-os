@@ -6,12 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { useSettings } from '@/composables/manageSettings'
-import { onMounted } from 'vue'
+import { useSettings } from '@/composables/useSettings'
 
-const { settings, loadSettings } = useSettings;
-
-onMounted(() => {
-  loadSettings();
-});
+const { settings } = useSettings;
 </script>
