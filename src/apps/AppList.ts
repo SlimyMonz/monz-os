@@ -21,9 +21,6 @@ import SonaMenu from './menus/SonaMenu';
 import SocialsMenu from './menus/SocialsMenu';
 
 
-
-
-
 export const AppList: AppItem[] = [
     {
         label: "Settings",

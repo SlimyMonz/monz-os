@@ -3,7 +3,7 @@ import type { Component } from 'vue';
 export interface AppItem {
     label: string;
     icon: string;
-    component: Component; 
+    component?: Component; 
     command?: () => void;
     menu?: MenuItem[]
 }
@@ -33,7 +33,7 @@ export interface AppWindow {
   minimized: boolean;
   maximized: boolean;
   zIndex: number;
-  component: Component;
+  component?: Component;
   menu?: MenuItem[];
 }
 
