@@ -12,39 +12,33 @@
 <script setup lang="ts">
 
 import type { AppItem } from '@/types'
-import { defineComponent, markRaw } from 'vue';
 
 import BlueskyIcon from '@icons/bluesky.svg';
 import FuraffinityIcon from '@icons/furaffinity.svg';
 import GithubIcon from '@icons/github.svg';
 import MastodonIcon from '@icons/mastodon.svg';
 
-const emptyComponent = markRaw(defineComponent({}));
 const openLink = (url: string) => () => window.open(url);
 
 const SocialList: AppItem[] = [
     {
         label: "Bluesky",
         icon: BlueskyIcon,
-        component: emptyComponent,
         command: openLink("https://bsky.app/profile/monz.us")
     },
     {
         label: "Furaffinity",
         icon: FuraffinityIcon,
-        component: emptyComponent,
         command: openLink("https://www.furaffinity.net/user/slimymonz")
     },
     {
         label: "Github",
         icon: GithubIcon,
-        component: emptyComponent,
         command: openLink("https://github.com/SlimyMonz")
     },
     {
         label: "Mastodon",
         icon: MastodonIcon,
-        component: emptyComponent,
         command: openLink("https://yiff.life/@slimymonz")
     }
 ]

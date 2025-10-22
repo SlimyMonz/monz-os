@@ -2,7 +2,7 @@ import type { MenuItem } from "@/types";
 
 const menu: MenuItem[] = [
   {
-    label: 'Sona',
+    label: 'Socials',
   },
   {
     label: 'File',
