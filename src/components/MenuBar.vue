@@ -7,7 +7,7 @@
         <!-- Left: Logo + App Menu -->
         <div class="flex items-center space-x-2 min-w-[100px] flex-shrink-0">
           <span class="text-lg font-semibold cursor-default select-none">Z</span>
-          <AppMenu :appMenu="appMenu" />
+          <AppMenu :appMenu="appStore.focusedApp.menu" />
         </div>
 
         <!-- Center: Date & time  -->
@@ -32,14 +32,8 @@
 <script setup lang="ts">
 import { useCurrentTime } from '@/composables/getDateTime';
 import { useAppStore } from '@/composables/useAppState';
-import { storeToRefs } from 'pinia';
-import { computed } from 'vue';
 import AppMenu from './AppMenu.vue';
 
 const { currentTime } = useCurrentTime();
-
 const appStore = useAppStore();
-const { focusedApp } = storeToRefs(appStore);
-
-const appMenu = computed(() => focusedApp.value.menu);
 </script>
