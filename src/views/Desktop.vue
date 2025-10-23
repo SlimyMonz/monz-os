@@ -14,24 +14,15 @@
   </div>
 </template>
 
-
 <script setup lang="ts">
 import MenuBar from '@/components/MenuBar.vue';
 import MonzDock from '@/components/MonzDock.vue';
 import DesktopApp from './DesktopApp.vue';
 
 import { useAppStore } from '@/composables/useAppState';
+import { storeToRefs } from 'pinia';
 
-const { runningApps, defocusApp } = useAppStore();
-
+const appStore = useAppStore();
+const { runningApps } = storeToRefs(appStore);
+const { defocusApp } = appStore;
 </script>
-
-<style lang="css" scoped>
-.background-container {
-  background-image: url('@/assets/wallpaper/monz_skin.jpg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100vh;
-}
-</style>
