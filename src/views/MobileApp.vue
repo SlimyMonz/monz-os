@@ -5,7 +5,7 @@
             class="cursor-move select-none bg-black text-white flex justify-between px-3 py-2 relative">
             <AppMenu :appMenu="appStore.focusedApp.menu" />
             <button class="w-8 h-8 rounded-full bg-red-500 hover:bg-red-600 flex items-center justify-center"
-                @click="closeApp(appStore.focusedApp)">
+                @click="defocusApp()">
                 X
             </button>
         </header>
@@ -22,5 +22,5 @@ import { useAppStore } from '@/composables/useAppState'
 import AppMenu from '@/components/AppMenu.vue'
 
 const appStore = useAppStore();
-const { closeApp } = useAppStore();
+const { defocusApp } = useAppStore();
 </script>
