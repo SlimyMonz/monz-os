@@ -1,10 +1,5 @@
 <template>
   <div>
-    <template v-if="isMobile">
-      <p class="p-4 text-center text-white bg-gray-900">Mobile Menu</p>
-    </template>
-
-    <template v-else>
       <header
         class="fixed top-0 left-0 right-0 flex items-center justify-between px-3 bg-black/50 backdrop-blur text-white text-xs font-sans select-none z-50 relative"
         style="user-select: none;">
@@ -19,7 +14,7 @@
         <div
           class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 tracking-wide select-none whitespace-nowrap"
           style="pointer-events: none;">
-          {{ currentTime.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' }) }}
+          {{ currentTime.toLocaleDateString(undefined, { weekday: 'long', month: 'long', year: 'numeric', day: 'numeric' }) }}
           &nbsp;
           {{ currentTime.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit', second: '2-digit' }) }}
         </div>
@@ -31,20 +26,16 @@
           <span title="User" class="cursor-default select-none">👤</span>
         </div>
       </header>
-
-    </template>
   </div>
 </template>
 
 <script setup lang="ts">
-import { displayIsMobile } from '@/composables/isMobile';
 import { useCurrentTime } from '@/composables/getDateTime';
 import { useAppStore } from '@/composables/useAppState';
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
 import AppMenu from './AppMenu.vue';
 
-const isMobile = displayIsMobile();
 const { currentTime } = useCurrentTime();
 
 const appStore = useAppStore();
