@@ -1,11 +1,19 @@
 @import "tailwindcss";
 
 /* Prevent scrolling on the entire page */
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
-  overflow: hidden;  
+  overflow: hidden;
   height: 100%;
   width: 100%;
 }
 
+.background-container {
+  background-image: url('@/assets/wallpaper/monz_skin.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
