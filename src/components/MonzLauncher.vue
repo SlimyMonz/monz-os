@@ -1,26 +1,24 @@
 <template>
     <div class="background-container">
-    <header class="" style="user-select: none;">
-        <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 tracking-wide select-none whitespace-nowrap"
-            style="pointer-events: none;">
-            {{ currentTime.toLocaleDateString(undefined, { month: 'long', year: 'numeric', day: 'numeric' }) }}
-            &nbsp;
-            {{ currentTime.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' }) }}
-        </div>
-    </header>
-    <div
-        class="fixed left-4 top-1/2 -translate-y-1/2 flex flex-col items-center p-3 rounded-2xl bg-black/50 backdrop-blur shadow-md/50">
-        <div v-for="(app, index) in AppList" :key="index" class="relative m-3 flex flex-col items-center group"
-            @click="openAppFromItem(app)">
-            <div
-                class="w-14 h-14 flex items-center justify-center rounded-2xl transition-transform duration-200 group-hover:scale-120">
-                <img :src="app.icon" alt="App icon" class="w-full h-full object-contain rounded-xl" />
+        <div class="flex flex-col p-8">
+            <div class="flex flex-col p-5 text-center m-3 mx-25 p-2 text-white bg-black/50 backdrop-blur rounded-xl">
+                <div class="text-5xl">
+                    {{ currentTime.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' }) }}
+                </div>
+                <div class="text-xl">
+                    {{ currentTime.toLocaleDateString(undefined, { month: 'long', year: 'numeric', day: 'numeric' }) }}
+                </div>
+            </div>
+            <div v-for="(app, index) in AppList" :key="index" class="relative m-1 ml-10 p-2 "
+                @click="openAppFromItem(app)">
+                <div class="w-18 h-18 flex items-center ">
+                    <img :src="app.icon" alt="App icon" class="w-full h-full object-contain rounded-xl" />
+                    <p class="m-3 p-2 text-xl text-white bg-black/50 backdrop-blur rounded-xl">{{ app.label }}</p>
+                </div>
             </div>
         </div>
     </div>
-    </div>
 </template>
-
 
 <script setup lang="ts">
 import { AppList } from '@/apps/AppList'
