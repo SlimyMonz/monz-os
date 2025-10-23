@@ -1,11 +1,31 @@
 <template>
+    <div class="flex flex-col h-full w-full">
+        <!-- App Header -->
+        <header
+            class="cursor-move select-none bg-black text-white flex justify-between px-3 py-2 relative">
+            <AppMenu :appMenu="appMenu" />
+            <button class="w-8 h-8 rounded-full bg-red-500 hover:bg-red-600 flex items-center justify-center"
+                @click="closeApp(focusedApp)">
+                X
+            </button>
+        </header>
 
+        <!-- Main Content -->
+        <main class=" bg-white/50 overflow-auto">
+            <component :is="focusedApp.component" />
+        </main>
+    </div>
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useAppStore } from '@/composables/useAppState'
+import AppMenu from '@/components/AppMenu.vue'
 
+const appStore = useAppStore()
+const { focusedApp } = storeToRefs(appStore)
+const { closeApp } = appStore
+
+const appMenu = computed(() => focusedApp.value.menu)
 </script>
-
-<style scoped>
-
-</style>
