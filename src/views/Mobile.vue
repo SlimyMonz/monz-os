@@ -4,7 +4,7 @@
 </template>
 
 <script setup lang="ts">
-import { useAppStore } from '@/composables/useAppState';
+import { useAppStore } from '@/stores/appStateStore';
 import MobileApp from './MobileApp.vue';
 import MonzLauncher from '@/components/MonzLauncher.vue';
 

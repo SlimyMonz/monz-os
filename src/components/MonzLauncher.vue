@@ -30,7 +30,7 @@
 <script setup lang="ts">
 import { AppList } from '@/apps/AppList'
 import { useCurrentTime } from '@/composables/getDateTime';
-import { useAppStore } from '@/composables/appStateStore';
+import { useAppStore } from '@/stores/appStateStore';
 
 const { openAppFromItem } = useAppStore();
 const { currentTime } = useCurrentTime();

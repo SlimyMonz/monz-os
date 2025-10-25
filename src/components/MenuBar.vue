@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 import { useCurrentTime } from '@/composables/getDateTime';
-import { useAppStore } from '@/composables/appStateStore';
+import { useAppStore } from '@/stores/appStateStore';
 import AppMenu from './AppMenu.vue';
 
 const { currentTime } = useCurrentTime();

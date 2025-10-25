@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { useAppStore } from '@/composables/useAppState'
+import { useAppStore } from '@/stores/appStateStore'
 import AppMenu from '@/components/AppMenu.vue'
 
 const appStore = useAppStore();

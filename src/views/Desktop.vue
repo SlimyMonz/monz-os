@@ -25,8 +25,8 @@
 import MenuBar from '@/components/MenuBar.vue';
 import MonzDock from '@/components/MonzDock.vue';
 import DesktopApp from './DesktopApp.vue';
-import { useAppStore } from '@/composables/appStateStore';
-import { useDesktopContainerStore } from '@/composables/desktopContainerStore';
+import { useAppStore } from '@/stores/appStateStore';
+import { useDesktopContainerStore } from '@/stores/desktopContainerStore';
 import { ref, onMounted } from 'vue';
 
 const appStore = useAppStore();
