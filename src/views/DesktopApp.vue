@@ -11,6 +11,8 @@
     :parent="true"
     handles-type="borders"
     :active-on-hover="true"
+    :draggable="!app.maximized"
+    :resizable="!app.maximized"
     class="!border-none !outline-none rounded-md overflow-hidden shadow-xl/50"
     @mousedown="focusApp(app)"
   >
@@ -37,16 +39,17 @@
 <script setup lang="ts">
 import type { AppWindow } from '@/types';
 import TitleBar from '@/components/TitleBar.vue';
-import { useAppStore } from '@/composables/useAppState';
+
 import DraggableResizableVue from 'draggable-resizable-vue3'
 
 const { closeApp, focusApp, toggleMaximizeApp, minimizeApp } = useAppStore();
 const props = defineProps<{ app: AppWindow }>();
 
-import { useWindowSize } from '@/composables/windowState';
 import { computed } from 'vue';
+import { useAppStore } from '@/stores/appStateStore';
+import { useDesktopContainerStore } from '@/stores/desktopContainerStore';
 
-const { windowSize } = useWindowSize();
+const desktopSize = useDesktopContainerStore()
 
 const computedX = computed({
   get() {
@@ -71,7 +74,7 @@ const computedY = computed({
 const computedWidth = computed({
   get() {
     // Use full window width when maximized, else stored width
-    return props.app.maximized ? windowSize.value.width : props.app.size.width;
+    return props.app.maximized ? desktopSize.width : props.app.size.width;
   },
   set(val) {
     if (!props.app.maximized) props.app.size.width = val;
@@ -81,7 +84,7 @@ const computedWidth = computed({
 const computedHeight = computed({
   get() {
     // Use full window height when maximized, else stored height
-    return props.app.maximized ? windowSize.value.height : props.app.size.height;
+    return props.app.maximized ? desktopSize.height : props.app.size.height;
   },
   set(val) {
     if (!props.app.maximized) props.app.size.height = val;
