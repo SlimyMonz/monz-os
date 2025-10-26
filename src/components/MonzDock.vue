@@ -1,30 +1,19 @@
 <template>
-  <!-- Dock container -->
-  <div
-    class="fixed left-4 top-1/2 -translate-y-1/2 flex flex-col items-center p-3 rounded-2xl bg-black/50 backdrop-blur shadow-md/50"
-  >
-    <div
-      v-for="(app, index) in AppList"
-      :key="index"
-      class="relative m-3 flex flex-col items-center group"
-      @click="openAppFromItem(app)"
-    >
-      <!-- App icon with scaling on hover -->
-      <div
-        class="w-14 h-14 flex items-center justify-center rounded-2xl transition-transform duration-200 group-hover:scale-120"
-      >
-        <img
-          :src="app.icon"
-          alt="App icon"
-          class="w-full h-full object-contain rounded-xl"
-        />
-      </div>
+  <!-- Parent container: full height, flex column -->
+  <div class="flex flex-col h-full w-full justify-center items-center">
+    <!-- Dock container: full width, vertical layout -->
+    <div class="flex flex-col rounded-2xl bg-black/25 backdrop-blur space-y-4 p-4">
+      <div v-for="(app, index) in AppList" :key="index" class="flex flex-1 flex-col items-center group cursor-pointer"
+        @click="openAppFromItem(app)">
+        <!-- App and Indicator -->
+        <div class="relative flex rounded-2xl transition-transform duration-200 group-hover:scale-120">
+          <img :src="app.icon" :alt="app.label" class="rounded-xl" />
 
-      <!-- Indicator right of icon -->
-        <div
-          v-if="isAppRunning(app)"
-          class="absolute right-[-0.80rem] top-1/2 transform -translate-y-1/2 w-[0.1rem] h-8 rounded-sm bg-white opacity-75 pointer-events-none"
-        ></div>
+          <div v-if="isAppRunning(app)"
+            class="absolute right-[-0.5rem] top-1/2 transform -translate-y-1/2 w-[0.1rem] h-8 rounded-sm bg-white/75 pointer-events-none">
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -37,4 +26,3 @@ import { useAppStore } from '@/stores/appStateStore';
 const { openAppFromItem, isAppRunning } = useAppStore();
 
 </script>
-

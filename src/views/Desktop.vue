@@ -8,11 +8,11 @@
     <!-- Bottom of Column -->
     <div class="flex flex-1">
       <!-- Left of Row -->
-      <div  class="w-32" >
+      <div  class="w-30 p-2" >
       <MonzDock/>
       </div>
       <!-- Right of Row -->
-       <div ref="desktopContainer" class="flex-1">
+       <div ref="desktopContainer" class="flex-1 h-full w-full">
       <template v-for="app in appStore.runningApps" :key="app.id">
         <DesktopApp v-if="app.active" v-show="!app.minimized" :app="app"/>
       </template>
@@ -26,14 +26,6 @@ import MenuBar from '@/components/MenuBar.vue';
 import MonzDock from '@/components/MonzDock.vue';
 import DesktopApp from './DesktopApp.vue';
 import { useAppStore } from '@/stores/appStateStore';
-import { useDesktopContainerStore } from '@/stores/desktopContainerStore';
-import { ref, onMounted } from 'vue';
 
 const appStore = useAppStore();
-const desktopContainer = ref<HTMLElement | null>(null);
-const desktopContainerStore = useDesktopContainerStore();
-
-onMounted(() => {
-  desktopContainerStore.setElement(desktopContainer.value);
-});
 </script>
