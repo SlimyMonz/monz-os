@@ -11,8 +11,6 @@
     :parent="true"
     handles-type="borders"
     :active-on-hover="true"
-    :draggable="!app.maximized"
-    :resizable="!app.maximized"
     class="!border-none !outline-none rounded-md overflow-hidden shadow-xl/50"
     @mousedown="focusApp(app)"
   >
