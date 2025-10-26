@@ -11,9 +11,12 @@ const desktopApp: AppWindow = {
   minimized: false,
   maximized: false,
   zIndex: 0,
+  prevZ: 0,
   position: { x: 0, y: 0 },
   size: { width: 0, height: 0 },
-  menu: [{label: 'Desktop'}]
+  prevPosition: { x: 0, y: 0 },
+  prevSize: { width: 0, height: 0 },
+  menu: [{ label: 'Desktop' }]
 };
 
 export const useAppStore = defineStore('appStore', () => {
@@ -71,8 +74,11 @@ export const useAppStore = defineStore('appStore', () => {
       minimized: false,
       maximized: false,
       zIndex: getMaxZIndex() + 1,
+      prevZ: getMaxZIndex() + 1,
       position: { x: 200, y: 200 },
       size: { width: 640, height: 480 },
+      prevPosition: { x: 200, y: 200 },
+      prevSize: { width: 640, height: 480 },
       menu: item.menu
     };
 
@@ -102,7 +108,21 @@ export const useAppStore = defineStore('appStore', () => {
   }
 
   function toggleMaximizeApp(app: AppWindow) {
-    app.maximized = !app.maximized;
+    if (app.maximized) { 
+      // Restore previous size and position 
+      app.size.width = app.prevSize.width; 
+      app.size.height = app.prevSize.height; 
+      app.position.x = app.prevPosition.x; 
+      app.position.y = app.prevPosition.y; 
+      app.zIndex = app.prevZ;
+    } else {
+      // Save current size & position before maximizing 
+      app.prevSize = { ...app.size }; 
+      app.prevPosition = { ...app.position }; 
+      app.position.x = 0; 
+      app.position.y = 0; 
+      app.zIndex = 9999; // max zIndex 
+    } app.maximized = !app.maximized;
   }
 
   function isAppRunning(item: AppItem) {
