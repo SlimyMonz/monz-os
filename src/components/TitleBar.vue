@@ -15,7 +15,7 @@
     </div>
 
     <!-- macOS-like control buttons -->
-    <div class="flex-1 flex-none mx-1 group cursor-pointer">
+    <div class="flex-1 flex-none mx-1 group">
       <button class="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 mx-1 cursor-pointer" @click="$emit('maximize')"></button>
       <button class="w-3 h-3 rounded-full bg-yellow-400 hover:bg-yellow-500 mx-1 cursor-pointer" @click="$emit('minimize')"></button>
       <button class="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 mx-1 cursor-pointer" @click="$emit('close')"></button>

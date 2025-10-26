@@ -1,30 +1,21 @@
 <template>
-  <draggable-resizable-vue
-    v-model:x="computedX"
-    v-model:y="computedY"
-    v-model:w="computedWidth"
+  <DraggableResizable 
+    v-model:x="computedX" 
+    v-model:y="computedY" 
+    v-model:w="computedWidth" 
     v-model:h="computedHeight"
-    :min-width="320"
-    :min-height="200"
     :z="computedZ"
-    :drag-handle="'.title-bar'"
-    :parent="true"
-    handles-type="borders"
-    :active-on-hover="true"
-    class="!border-none !outline-none rounded-md overflow-hidden shadow-xl/50"
+    :draggable="!app.maximized" 
+    :resizable="!app.maximized" 
+    :parent="true" 
+    class="rounded-md overflow-hidden shadow-xl"
     @mousedown="focusApp(app)"
-  >
+    >
 
     <div class="flex flex-col h-full w-full">
       <div class="cursor-move select-none h-8">
-        <TitleBar
-          :title="app.label"
-          :maximized="app.maximized"
-          :menu="app.menu"
-          @close="closeApp(app)"
-          @minimize="minimizeApp(app)"
-          @maximize="toggleMaximizeApp(app)"
-        />
+        <TitleBar :title="app.label" :maximized="app.maximized" :menu="app.menu" @close="closeApp(app)"
+          @minimize="minimizeApp(app)" @maximize="toggleMaximizeApp(app)" />
       </div>
 
       <!-- Scrollable content -->
@@ -32,7 +23,7 @@
         <component :is="app.component" />
       </div>
     </div>
-  </draggable-resizable-vue>
+  </DraggableResizable>
 </template>
 
 
@@ -42,7 +33,7 @@ import TitleBar from '@/components/TitleBar.vue';
 import { useWindowSize } from '@/composables/windowState';
 import { computed } from 'vue';
 import { useAppStore } from '@/stores/appStateStore';
-import DraggableResizableVue from 'draggable-resizable-vue3'
+import DraggableResizable from '@/components/DraggableResizable.vue';
 
 const { closeApp, focusApp, toggleMaximizeApp, minimizeApp } = useAppStore();
 const { windowSize } = useWindowSize();
