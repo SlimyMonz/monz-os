@@ -1,9 +1,9 @@
 <template>
-    <div class="background-container">
+    <div class="flex flex-col w-full h-screen bg-[url(@/assets/wallpaper/monz_skin.jpg)] bg-center bg-cover">
         <div class="flex flex-col p-8">
             <!-- Date/Time Widget -->
             <div class="flex flex-col items-center m-3 mb-10">
-                <div class="inline-block text-white bg-black/50 backdrop-blur rounded-xl p-5 text-center">
+                <div class="text-white bg-black/50 backdrop-blur rounded-xl p-5 text-center">
                     <div class="text-5xl">
                         {{ currentTime.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' }) }}
                     </div>

@@ -1,19 +1,19 @@
 <template>
-    <div class="flex flex-col h-full w-full">
-        <!-- App Header -->
-        <header
-            class="cursor-move select-none bg-black text-white flex justify-between px-3 py-2 relative">
+    <div class="flex flex-col w-full h-screen">
+        <!-- App Top Bar -->
+        <div
+            class="flex cursor-move select-none bg-black text-white justify-between items-center px-3 h-12">
             <AppMenu :appMenu="appStore.focusedApp.menu" />
             <button class="w-8 h-8 rounded-full bg-red-500 hover:bg-red-600 flex items-center justify-center"
                 @click="defocusApp()">
                 X
             </button>
-        </header>
+        </div>
 
-        <!-- Main Content -->
-        <main class=" bg-white/50 overflow-auto">
+        <!-- Main App Content -->
+        <div class="flex-1 bg-white/50 overflow-auto">
             <component :is="appStore.focusedApp.component" />
-        </main>
+        </div>
     </div>
 </template>
 
