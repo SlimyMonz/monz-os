@@ -1,6 +1,6 @@
 <template>
-    <div class="flex flex-col w-full h-screen">
-        <!-- App Top Bar -->
+    <div class="flex flex-col w-full h-screen overflow-hidden">
+        <!-- App Top Bar (Fixed / Stationary) -->
         <div
             class="flex cursor-move select-none bg-black text-white justify-between items-center px-3 h-12">
             <AppMenu :appMenu="appStore.focusedApp.menu" />
@@ -10,7 +10,7 @@
             </button>
         </div>
 
-        <!-- Main App Content -->
+        <!-- Main App Content (Scrollable) -->
         <div class="flex-1 bg-white/50 overflow-auto">
             <component :is="appStore.focusedApp.component" />
         </div>
