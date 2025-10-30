@@ -1,6 +1,6 @@
 <template>
   <!-- Entire Window -->
-  <div class="flex flex-col w-full h-screen bg-[url(@/assets/wallpaper/monz_skin.jpg)] bg-center bg-cover">
+  <div class="flex flex-col w-full h-screen bg-[url(@/assets/wallpaper/monz_skin.jpg)] bg-center bg-cover overflow-hidden overscroll-none">
     <!-- Top: Menu -->
     <div class="flex h-8">
       <MenuBar />
