@@ -9,6 +9,7 @@ import SocialsComponent from './Socials.vue';
 import HistoryIcon from '@icons/history.svg';
 import SettingsIcon from '@icons/settings.svg';
 import SonaIcon from '@icons/sona.svg';
+import SocialsIcon from '@icons/socials.svg';
 
 // Types
 import type { AppItem } from '@/types';
@@ -44,8 +45,60 @@ export const AppList: AppItem[] = [
 
     {
         label: "Socials",
-        icon: SonaIcon,
+        icon: SocialsIcon,
         component: markRaw(SocialsComponent),
         menu: SocialsMenu
-    }
+    },
+    {
+        label: "Settings",
+        icon: SettingsIcon,
+        component: markRaw(SettingsComponent),
+        menu: SettingsMenu
+    },
+    {
+        label: "History",
+        icon: HistoryIcon,
+        component: markRaw(HistoryComponent),
+        menu: HistoryMenu
+    },
+
+    {
+        label: "Sona",
+        icon: SonaIcon,
+        component: markRaw(SonaComponent),
+        menu: SonaMenu
+    },
+
+    {
+        label: "Socials",
+        icon: SocialsIcon,
+        component: markRaw(SocialsComponent),
+        menu: SocialsMenu
+    },
+        {
+        label: "Settings",
+        icon: SettingsIcon,
+        component: markRaw(SettingsComponent),
+        menu: SettingsMenu
+    },
+    {
+        label: "History",
+        icon: HistoryIcon,
+        component: markRaw(HistoryComponent),
+        menu: HistoryMenu
+    },
+
+    {
+        label: "Sona",
+        icon: SonaIcon,
+        component: markRaw(SonaComponent),
+        menu: SonaMenu
+    },
+
+    {
+        label: "Socials",
+        icon: SocialsIcon,
+        component: markRaw(SocialsComponent),
+        menu: SocialsMenu
+    },
 ]
