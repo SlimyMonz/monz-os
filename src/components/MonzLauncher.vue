@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-full h-lvh overflow-hidden bg-[url(@/assets/wallpaper/monz_skin.jpg)] bg-center bg-cover">
+  <div class="flex flex-col w-full h-lvh bg-[url(@/assets/wallpaper/monz_skin.jpg)] bg-center bg-cover">
     <div class="flex flex-col p-5 h-full">
       <!-- Date/Time Widget -->
       <div class="flex flex-col items-center m-3 my-10">
