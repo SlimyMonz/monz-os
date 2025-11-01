@@ -14,9 +14,9 @@
       </div>
 
       <!-- List of Apps -->
-      <div class="bg-black/25 backdrop-blur-xs rounded-3xl flex-1 overflow-hidden">
+      <div class="bg-black/25 backdrop-blur-xs rounded-3xl flex-1 overflow-hidden m-5">
         <!-- Scrollable app list -->
-        <div class="overflow-auto h-full">
+        <div class="overflow-auto h-full no-scrollbar">
           <div
             v-for="(app, index) in AppList"
             :key="index"
@@ -43,3 +43,11 @@ import { useAppStore } from '@/stores/appStateStore';
 const { openAppFromItem } = useAppStore();
 const { currentTime } = useCurrentTime();
 </script>
+
+<style lang="css" scoped>
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+</style>
